@@ -1,7 +1,6 @@
 {
   "name": "basic-express-server",
   "version": "1.0.0",
-  "description": "",
   "private": true,
   "scripts": {
     "start": "node ./server.js"
@@ -10,6 +9,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
-  }
+    "express": "^4.18.2",
+    "yup": "^1.2.0"
+  },
+  "main": "old_server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vlasoffivan95/basic-express-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vlasoffivan95/basic-express-server/issues"
+  },
+  "homepage": "https://github.com/vlasoffivan95/basic-express-server#readme",
+  "description": ""
 }

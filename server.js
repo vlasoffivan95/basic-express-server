@@ -1,34 +1,35 @@
 const express = require("express");
+const yup = require("yup");
 const app = express();
 
 const PORT = 5001;
+const usersDB = [];
 
 app.get("/users", (req, res) => {
-  res.send([{ id: 1 }, { id: 2 }]);
+  res.send(usersDB);
+});
+
+const bodyParser = express.json();
+const USER_CREATE_SCHEMA = yup.object({
+  login: yup.string().required(),
+  password: yup.string().required(),
 });
 
 app.post(
   "/users",
-  (req, res, next) => {
-    console.log("first middleware");
-    next()
+  bodyParser,
+  async (req, res, next) => {
+    try {
+      await USER_CREATE_SCHEMA.validate(req.body);
+      next();
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
   },
-  (req, res, next) => {
-    console.log("second middleware");
-    next()
-  },
-  (req, res) => {
-    console.log("final func");
-    res.send("user created");
+
+  async (req, res) => {
+    res.send("created");
   }
 );
-
-app.get("/test*", (req, res) => {
-  res.send(`request.path is ${req.path} and requests.method`);
-});
-
-// app.post("/users");
-// app.put("/users");
-// app.delete("/users");
 
 app.listen(PORT);
