@@ -28,6 +28,12 @@ app.post(
   },
 
   async (req, res) => {
+    const newUser = {
+      ...req.body,
+      id: Date.now(),
+    };
+    usersDB.push(newUser);
+    console.log(usersDB);
     res.send("created");
   }
 );
