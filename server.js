@@ -4,11 +4,10 @@ const usersController = require("./controllers/user.controller");
 
 const app = express();
 const PORT = 5001;
-
-app.get("/users", usersController.getUsers);
-
 const bodyParser = express.json();
 
+app.get("/users", usersController.getUsers);
+app.get("/users/:userId", usersController.getUser);
 app.post("/users", bodyParser, validateUserMW, usersController.createUser);
 
 app.listen(PORT);
