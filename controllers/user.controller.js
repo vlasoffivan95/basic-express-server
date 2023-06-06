@@ -43,3 +43,28 @@ module.exports.deleteUser = async (req, res) => {
     res.status(404).send("User not found");
   }
 };
+
+module.exports.updateUser = async (req, res) => {
+  const {
+    params: { userId },
+    body,
+  } = req;
+
+  const foundUser = usersDB.find((u) => u.id === Number(userId));
+
+  if (foundUser) {
+    let newUser;
+    usersDB = usersDB.map((u) => {
+      const isSameUser = u.id === Number(userId);
+      if (!isSameUser) {
+        return u;
+      } else {
+        newUser = { ...u, ...body };
+        return newUser;
+      }
+    });
+    res.send(newUser);
+  } else {
+    res.status(404).send("User not found!!!!");
+  }
+};

@@ -10,5 +10,6 @@ app.get("/users", usersController.getUsers);
 app.get("/users/:userId", usersController.getUser);
 app.post("/users", bodyParser, validateUserMW, usersController.createUser);
 app.delete("/users/:userId", usersController.deleteUser);
+app.put("/users/:userId", bodyParser, usersController.updateUser);
 
 app.listen(PORT);
