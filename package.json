@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "start-dev": "nodemon ./server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +25,8 @@
     "url": "https://github.com/vlasoffivan95/basic-express-server/issues"
   },
   "homepage": "https://github.com/vlasoffivan95/basic-express-server#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
