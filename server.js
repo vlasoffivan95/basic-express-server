@@ -9,5 +9,6 @@ const bodyParser = express.json();
 app.get("/users", usersController.getUsers);
 app.get("/users/:userId", usersController.getUser);
 app.post("/users", bodyParser, validateUserMW, usersController.createUser);
+app.delete("/users/:userId", usersController.deleteUser);
 
 app.listen(PORT);

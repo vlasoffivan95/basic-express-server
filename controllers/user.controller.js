@@ -1,4 +1,8 @@
-const usersDB = [{ id: 1, login: "admin", password: "admin" }];
+let usersDB = [
+  { id: 1, login: "admin", password: "admin" },
+  { id: 2, login: "admin1", password: "admin1" },
+  { id: 3, login: "admin2", password: "admin2" },
+];
 
 module.exports.createUser = async (req, res) => {
   const newUser = {
@@ -24,5 +28,18 @@ module.exports.getUser = async (req, res) => {
     res.send(foundUser);
   } else {
     res.status(404).send("User not found!");
+  }
+};
+
+module.exports.deleteUser = async (req, res) => {
+  const {
+    params: { userId },
+  } = req;
+  const foundUser = usersDB.find((u) => u.id === Number(userId));
+  if (foundUser) {
+    usersDB = usersDB.filter((u) => u.id !== Number(userId));
+    res.send(userId);
+  } else {
+    res.status(404).send("User not found");
   }
 };
