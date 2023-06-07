@@ -1,17 +1,9 @@
 const express = require("express");
-const router = express.Router();
-const { validateUserMW } = require("../middlewares/userMW");
-const usersController = require("../controllers/user.controller");
+const userRouter = require("./userRouter")
+const rootRouter = express.Router()
 
-router
-  .route("/users")
-  .get(usersController.getUsers)
-  .post(validateUserMW, usersController.createUser);
+rootRouter.use(userRouter)
 
-router
-  .route("/users/:userId")
-  .get(usersController.getUser)
-  .delete(usersController.deleteUser)
-  .put(usersController.updateUser);
 
-module.exports = router;
+
+module.exports = rootRouter;
