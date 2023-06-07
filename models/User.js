@@ -1,4 +1,3 @@
-
 class User {
   static userDB = [
     { id: 1, login: "admin", password: "admin" },
@@ -33,19 +32,12 @@ class User {
   }
 
   static async update(userId, newData) {
-    let updatedUser;
     const foundUser = await User.findOne(userId);
     if (foundUser) {
-      this.userDB = this.userDB.map((u) => {
-        const isSameUser = u.id === Number(userId);
-        if (!isSameUser) {
-          return u;
-        } else {
-          updatedUser = { ...u, ...newData };
-          return updatedUser;
-        }
-      });
+      Object.assign(foundUser, newData);
+      return foundUser;
     }
+    throw new Error("User not found");
   }
 }
 
