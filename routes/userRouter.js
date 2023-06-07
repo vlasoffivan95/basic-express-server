@@ -4,12 +4,12 @@ const { validateUserMW } = require("../middlewares/userMW");
 const usersController = require("../controllers/user.controller");
 
 userRouter
-  .route("/users")
+  .route("/")
   .get(usersController.getUsers)
   .post(validateUserMW, usersController.createUser);
 
 userRouter
-  .route("/users/:userId")
+  .route("/:userId")
   .get(usersController.getUser)
   .delete(usersController.deleteUser)
   .put(usersController.updateUser);
